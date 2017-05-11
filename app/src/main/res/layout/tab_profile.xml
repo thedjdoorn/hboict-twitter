@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="daviddoorn_twitter.saxion.nl.twitter.MainActivity$PlaceholderFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:elevation="30sp"
+        android:layout_height="150sp"
+        app:srcCompat="@android:color/background_light"
+        android:id="@+id/imageView"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
