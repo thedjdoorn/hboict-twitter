@@ -12,24 +12,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Cache;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.concurrent.Executors;
 
-import daviddoorn_twitter.saxion.nl.twitter.Model.Tweet;
+import daviddoorn_twitter.saxion.nl.twitter.Model.User;
 
-public class TweetListAdapter extends ArrayAdapter<Tweet> {
+public class UserListAdapter extends ArrayAdapter<User> {
 
-    private List<Tweet> tweets;
+    private List<User> users;
     private static Picasso instance;
 
-    public TweetListAdapter(Context context, int resource, List<Tweet> objects) {
+    public UserListAdapter(Context context, int resource, List<User> objects) {
         super(context, resource, objects);
-        tweets = objects;
+        users = objects;
     }
 
     public static Picasso getSharedInstance(Context context)
@@ -47,10 +44,10 @@ public class TweetListAdapter extends ArrayAdapter<Tweet> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView==null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.tweet_list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_list_item, parent, false);
         }
 
-        Tweet tweet = tweets.get(position);
+        User user = users.get(position);
 
         Picasso.Builder builder = new Picasso.Builder(convertView.getContext());
         builder.listener(new Picasso.Listener()
@@ -62,16 +59,18 @@ public class TweetListAdapter extends ArrayAdapter<Tweet> {
             }
         });
 
-        builder.build().load(tweet.getUser().getImageLink()).fit().into( (ImageView) convertView.findViewById(R.id.userAvatar));
-        ((TextView) convertView.findViewById(R.id.userText)).setText(tweet.getUser().getFullName() + " ("+tweet.getUser().getHandle()+")");
-        ((TextView) convertView.findViewById(R.id.tweetText)).setText(tweet.getContent());
+        builder.build().load(user.getImageLink()).fit().into( (ImageView) convertView.findViewById(R.id.userAvatar));
+        ((TextView) convertView.findViewById(R.id.fullName)).setText(user.getFullName());
+        ((TextView) convertView.findViewById(R.id.username)).setText(user.getHandle());
+        ((TextView) convertView.findViewById(R.id.followercount)).setText(user.getFollowerCount() + " followers");
+        ((TextView) convertView.findViewById(R.id.followingCount)).setText("Following" + user.getFriendsCount());
 
         return convertView;
     }
 
     @Nullable
     @Override
-    public Tweet getItem(int position) {
-        return tweets.get(position);
+    public User getItem(int position) {
+        return users.get(position);
     }
 }

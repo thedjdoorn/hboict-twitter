@@ -1,7 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="daviddoorn_twitter.saxion.nl.twitter.MainActivity" >
-    <item android:id="@+id/loginItem"
+    <item android:id="@+id/logoutItem"
         android:icon="@drawable/ic_lock_open_black_24dp"
-        android:title="Log In" />
+        android:title="Log Uit" />
+    <item android:id="@+id/searchitem"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Zoek" />
 </menu>
