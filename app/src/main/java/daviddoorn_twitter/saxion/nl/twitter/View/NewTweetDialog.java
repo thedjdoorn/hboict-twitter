@@ -4,11 +4,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.github.scribejava.apis.TwitterApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -46,6 +51,28 @@ public class NewTweetDialog extends DialogFragment {
                         NewTweetDialog.this.getDialog().cancel();
                     }
                 });
+        ((EditText)view.findViewById(R.id.editTweet)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                TextView charCount = (TextView) view.findViewById(R.id.charCount);
+                charCount.setText(s.length()+"/140");
+                if (s.length()>140){
+                    charCount.setTextColor(Color.RED);
+                } else {
+                    charCount.setTextColor(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         return builder.create();
     }
 

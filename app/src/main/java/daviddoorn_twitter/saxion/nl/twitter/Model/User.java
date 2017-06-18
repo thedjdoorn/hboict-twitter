@@ -28,7 +28,6 @@ public class User {
             this.followerCount = jsonObject.getInt("followers_count");
             this.friendsCount = jsonObject.getInt("friends_count");
             this.following = jsonObject.getBoolean("following");
-
         } catch (JSONException e){
             System.out.println("JSON error: "+e.getMessage());
         }
@@ -42,6 +41,10 @@ public class User {
         this.followerCount = followerCount;
         this.friendsCount = friendsCount;
         this.following = following;
+    }
+
+    public int getUid() {
+        return uid;
     }
 
     public String getFullName() {
@@ -72,7 +75,7 @@ public class User {
         return following;
     }
 
-    public String toJSON(){
+    public String toJSON(){;
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("id", uid);
@@ -80,8 +83,11 @@ public class User {
             jsonObject.put("name", fullName);
             jsonObject.put("profile_image_url_https", imageLink);
             jsonObject.put("description", description);
+            jsonObject.put("followers_count", followerCount);
+            jsonObject.put("friends_count", friendsCount);
+            jsonObject.put("following", this.following);
         } catch (JSONException e){
-            System.out.println("JSON Error");
+            System.out.println("JSON Error: "+ e.getMessage());
         }
         return jsonObject.toString();
     }

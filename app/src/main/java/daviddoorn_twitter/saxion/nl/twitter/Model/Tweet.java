@@ -10,32 +10,40 @@ import org.json.JSONObject;
  */
 
 public class Tweet {
-    private int id;
+    private String id;
     private String content;
     private User user;
-    private Entity[] entities;
+    private boolean favorited;
 
-    public Tweet(){
+    private Tweet(){
         this.user = null;
         this.content = "";
-        this.id = -1;
+        this.id = "-1";
+        this.favorited = false;
     }
 
-    public Tweet(User user, String content, int id){
+    public Tweet(User user, String content, String id, boolean favorited){
         this.user =  user;
         this.content = content;
         this.id = id;
+        this.favorited = favorited;
     }
 
     public Tweet(JSONObject fromJSON){
-        this();
+        System.out.println(fromJSON);
         try {
             this.user = new User(fromJSON.getJSONObject("user"));
             this.content = fromJSON.getString("text");
-            this.id = fromJSON.getInt("id");
+            this.id = fromJSON.getString("id_str");
+            this.favorited = fromJSON.getBoolean("favorited");
+            System.out.println(favorited);
         } catch (JSONException e){
-            System.out.println("JSON Error occurred");
+            System.out.println("JSON Error occurred: "+e.getMessage());
         }
+    }
+
+    public String getId() {
+        return id;
     }
 
     public User getUser() {
@@ -46,7 +54,11 @@ public class Tweet {
         return content;
     }
 
-    public Entity[] getEntities() {
-        return entities;
+    public boolean isFavorited(){
+        return favorited;
+    }
+
+    public void setFavorited(boolean favorited) {
+        this.favorited = favorited;
     }
 }

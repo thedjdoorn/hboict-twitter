@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/profilePictureView"
         android:layout_width="150dp"
-        android:layout_height="195dp"
+        android:layout_height="150sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:srcCompat="@mipmap/nope"

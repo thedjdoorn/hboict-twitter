@@ -146,6 +146,7 @@ public class FriendsTab extends Fragment {
                 JSONArray users = longJson.getJSONArray("users");
                 for (int i = 0; i<users.length(); i++){
                     User u = new User(users.getJSONObject(i));
+                    System.out.println(users.getJSONObject(i));
                     friendsList.add(u);
                 }
             } catch (Exception e) {

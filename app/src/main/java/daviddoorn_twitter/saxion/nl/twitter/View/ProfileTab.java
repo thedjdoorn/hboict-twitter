@@ -86,7 +86,7 @@ public class ProfileTab extends Fragment {
                 }
             });
 
-            builder.build().load(user.getImageLink()).fit().into(iv);
+            builder.build().load(user.getImageLink().replaceAll("_normal","")).fit().into(iv);
 
             ((TextView) getView().findViewById(R.id.titleView)).setText(user.getFullName()+" (@"+user.getHandle()+")");
             ((TextView) getView().findViewById(R.id.description)).setText(user.getDescription());

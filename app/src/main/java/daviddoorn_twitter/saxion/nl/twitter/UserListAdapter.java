@@ -22,20 +22,10 @@ import daviddoorn_twitter.saxion.nl.twitter.Model.User;
 public class UserListAdapter extends ArrayAdapter<User> {
 
     private List<User> users;
-    private static Picasso instance;
 
     public UserListAdapter(Context context, int resource, List<User> objects) {
         super(context, resource, objects);
         users = objects;
-    }
-
-    public static Picasso getSharedInstance(Context context)
-    {
-        if(instance == null)
-        {
-            instance = new Picasso.Builder(context).executor(Executors.newSingleThreadExecutor()).memoryCache(Cache.NONE).indicatorsEnabled(true).build();
-        }
-        return instance;
     }
 
 
@@ -49,17 +39,7 @@ public class UserListAdapter extends ArrayAdapter<User> {
 
         User user = users.get(position);
 
-        Picasso.Builder builder = new Picasso.Builder(convertView.getContext());
-        builder.listener(new Picasso.Listener()
-        {
-            @Override
-            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
-            {
-                exception.printStackTrace();
-            }
-        });
-
-        builder.build().load(user.getImageLink()).fit().into( (ImageView) convertView.findViewById(R.id.userAvatar));
+        Picasso.with(getContext()).load(user.getImageLink().replaceAll("_normal", "")).into( (ImageView) convertView.findViewById(R.id.userAvatar));
         ((TextView) convertView.findViewById(R.id.fullName)).setText(user.getFullName());
         ((TextView) convertView.findViewById(R.id.username)).setText(user.getHandle());
         ((TextView) convertView.findViewById(R.id.followercount)).setText(user.getFollowerCount() + " followers");

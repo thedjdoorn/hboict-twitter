@@ -23,7 +23,10 @@
         </activity>
         <activity android:name=".ProfileViewActivity" />
         <activity android:name=".TwitterLoginActivity" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity
+            android:name=".SearchResultsActivity"
+            android:label="@string/title_activity_search_results"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

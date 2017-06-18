@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="daviddoorn_twitter.saxion.nl.twitter.ProfileViewActivity">
+    tools:context="daviddoorn_twitter.saxion.nl.twitter.ProfileViewActivity"
+    >
 
     <ImageView
         android:id="@+id/profilePictureView"
         android:layout_width="150dp"
-        android:layout_height="195dp"
+        android:layout_height="150sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:srcCompat="@mipmap/nope"
@@ -39,12 +40,16 @@
         android:layout_marginRight="4dp"
         />
 
-    <Button
+    <ToggleButton
         android:id="@+id/followButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/description"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:text="Follow" />
+        android:layout_marginTop="21dp"
+        android:background="@drawable/follow_selector"
+        android:checked="true"
+        android:textOff="Follow"
+        android:textOn="Unfollow" />
+
 </RelativeLayout>
